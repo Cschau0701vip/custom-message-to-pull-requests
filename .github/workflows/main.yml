@@ -1,4 +1,4 @@
-name: ci
+name: main-custom-pr-action
 
 on:
   pull_request:
