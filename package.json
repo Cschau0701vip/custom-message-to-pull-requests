@@ -5,10 +5,10 @@
   "keywords": [
     "GitHub",
     "Actions",
-    "javascript",
-    "pull request",
-    "comments",
-    "pr"
+    "Javascript",
+    "Pull Request",
+    "Comments",
+    "PR"
   ],
   "homepage": "https://github.com/Cschau0701vip/custom-message-to-pull-requests#readme",
   "bugs": {
@@ -19,7 +19,7 @@
     "url": "git+https://github.com/Cschau0701vip/custom-message-to-pull-requests.git"
   },
   "license": "MIT",
-  "author": "Michael Shick <m@shick.us>",
+  "author": "Chetan Chaudhari",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
