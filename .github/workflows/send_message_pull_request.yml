@@ -2,15 +2,26 @@ on:
   pull_request:
 
 jobs:
-  pr:
+  send-message:
     runs-on: ubuntu-latest
+    
     permissions:
       pull-requests: write
+    
     steps:
-      - uses: mshick/add-pr-comment@v2
+#      - uses: mshick/add-pr-comment@v2
+#        with:
+#          if: always()
+#          message: |
+#            **Hi, This is custom message from github workflow!**
+#          message-failure: |
+#            Uh oh! It got failed!
+
+      - name: Clone Repository
+        uses: actions/checkout@master
+        
+      - name: tfsec comment
+        uses: aquasecurity/tfsec-pr-commenter-action@v1.2.0
         with:
-          if: always()
-          message: |
-            **Hi, This is custom message from github workflow!**
-          message-failure: |
-            Uh oh! It got failed!
+          tfsec_args: --soft-fail
+          github_token: ${{ github.token }}
