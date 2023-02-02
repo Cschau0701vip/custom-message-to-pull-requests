@@ -11,11 +11,20 @@ jobs:
     steps:
 #      - uses: mshick/add-pr-comment@v2
 #        with:
-#          if: always()
 #          message: |
 #            **Hi, This is custom message from github workflow!**
 #          message-failure: |
 #            Uh oh! It got failed!
+
+      - uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            **Hi, This is custom message from github workflow!**
+          message-success: |
+            Wow!! Just success!!
+          message-failure: |
+            Uh oh! It got failed!
+            issue: ${{ steps.pr.outputs.issue }}
 
       - name: Clone Repository
         uses: actions/checkout@master
