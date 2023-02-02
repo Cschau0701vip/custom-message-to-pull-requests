@@ -1,6 +1,7 @@
 on:
-  pull_request:
-
+  #pull_request:
+  workflow_dispatch:
+  
 jobs:
   send-message:
     runs-on: ubuntu-latest
@@ -27,7 +28,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: mshick/add-pr-comment@v2
+      - uses: ./ # mshick/add-pr-comment@v2
         with:
           message: |
             **Hi, This is custom message from github workflow!**
