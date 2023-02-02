@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@master
         
       - name: Create issue
-      - id: pr
+        id: pr
         run: |
           issue=$(gh pr list --search "${{ github.sha }}" --state open --json number --jq ".[0].number")
           echo "issue=$issue" >> $GITHUB_OUTPUT
