@@ -17,6 +17,13 @@ jobs:
 #          message-failure: |
 #            Uh oh! It got failed!
 
+      - id: pr
+        run: |
+          issue=$(gh pr list --search "${{ github.sha }}" --state open --json number --jq ".[0].number")
+          echo "issue=$issue" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Clone Repository
         uses: actions/checkout@master
         
