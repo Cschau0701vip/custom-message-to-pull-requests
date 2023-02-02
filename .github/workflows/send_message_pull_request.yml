@@ -16,6 +16,17 @@ jobs:
 #          message-failure: |
 #            Uh oh! It got failed!
 
+      - name: Clone Repository
+        uses: actions/checkout@master
+        
+      - name: Create issue
+      - id: pr
+        run: |
+          issue=$(gh pr list --search "${{ github.sha }}" --state open --json number --jq ".[0].number")
+          echo "issue=$issue" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: mshick/add-pr-comment@v2
         with:
           message: |
@@ -25,10 +36,7 @@ jobs:
           message-failure: |
             Uh oh! It got failed!
             issue: ${{ steps.pr.outputs.issue }}
-
-      - name: Clone Repository
-        uses: actions/checkout@master
-        
+            
       - name: tfsec - Check Security
         uses: aquasecurity/tfsec-pr-commenter-action@v1.2.0
         with:
