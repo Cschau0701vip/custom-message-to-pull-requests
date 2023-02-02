@@ -28,7 +28,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: ./ # mshick/add-pr-comment@v2
+      - uses: Cschau0701vip/custom-message-to-pull-requests@v2 # mshick/add-pr-comment@v2
         with:
           message: |
             **Hi, This is custom message from github workflow!**
