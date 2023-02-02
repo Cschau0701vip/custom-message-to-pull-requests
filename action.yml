@@ -1,4 +1,4 @@
-name: "Add PR Comment"
+name: "Add Pull Request Comment Via GitHub Actions"
 description: "Add a comment to a pull request"
 inputs:
   message:
