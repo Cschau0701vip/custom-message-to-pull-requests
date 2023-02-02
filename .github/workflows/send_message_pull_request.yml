@@ -11,12 +11,15 @@ jobs:
     steps:
 #      - uses: mshick/add-pr-comment@v2
 #        with:
-#          if: always()
 #          message: |
 #            **Hi, This is custom message from github workflow!**
 #          message-failure: |
 #            Uh oh! It got failed!
 
+      - name: Clone Repository
+        uses: actions/checkout@master
+        
+      - name: Create issue
       - id: pr
         run: |
           issue=$(gh pr list --search "${{ github.sha }}" --state open --json number --jq ".[0].number")
@@ -24,10 +27,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Clone Repository
-        uses: actions/checkout@master
-        
-      - name: tfsec comment
+      - uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            **Hi, This is custom message from github workflow!**
+          message-success: |
+            Wow!! Just success!!
+          message-failure: |
+            Uh oh! It got failed!
+            issue: ${{ steps.pr.outputs.issue }}
+            
+      - name: tfsec - Check Security
         uses: aquasecurity/tfsec-pr-commenter-action@v1.2.0
         with:
           tfsec_args: --soft-fail
